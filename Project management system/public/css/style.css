@@ -1,0 +1,74 @@
+html {
+    position: relative;
+    min-height: 100%;
+  }
+  
+  body {
+    height: 100%;
+  }
+
+.scroll-to-top {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    display: none;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    color: #fff;
+    background: rgba(52, 58, 64, 0.5);
+    line-height: 46px;
+  }
+  
+  .scroll-to-top:focus,
+  .scroll-to-top:hover {
+    color: white;
+  }
+  
+  .scroll-to-top:hover {
+    background: #343a40;
+  }
+  
+  .scroll-to-top i {
+    font-weight: 800;
+  }
+
+
+.custom-no-outline {
+    background: transparent !important;
+    border: transparent !important;
+    color: black;
+  }
+  
+  .block-ellipsis {
+    display: block;
+    display: -webkit-box;
+    max-width: 100%;
+    height: 100px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+.boardInfo {
+  word-wrap: break-word;
+}
+
+.scroll-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.scroll-container .row{
+  display:block;
+}
+.scroll-container .scroll-container-box {
+  display: inline-block;
+  float: none;
+  padding: 15px;
+}

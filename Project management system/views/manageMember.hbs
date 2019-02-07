@@ -1,0 +1,52 @@
+<div class="container">
+
+    <div class="form-inline my-3" id="addMemberToList">
+        <label class="sr-only" for="inlineFormInputName2">Email</label>
+        <select class="form-control  mb-2 mr-sm-2" required="required" id="email" name="email">
+            <option value="select" disabled="disabled">Select</option>
+            {{#each userData}}
+            <option value="{{this._id}}">{{this.email}}</option>
+            {{/each}}
+        </select>
+        <button type="submit" data-board="{{boardData._id}}" class="addMember btn btn-primary mb-2">Add Member</button>
+    </div>
+
+    <div id="userMsg" class="alert alert-success my-3" style="display:none;">
+    </div>
+    <div id="userErrMsg" class="alert alert-danger" style="display:none;">
+    </div>
+    <div class="my-3">
+        <table class="table" data-board={{boardData._id}} style="width:510px;">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Email Id</th>
+                    {{!--
+                    <th>Added by</th> --}}
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="row_{{boardData._id}}">
+                    <td>{{boardData.createdBy.email}} (Admin)</td>
+                    {{!--
+                    <td>Self (Admin)</td> --}}
+                    <td>-</td>
+                </tr>
+                {{# each boardData.users }}
+                <tr id="row_{{this._id}}">
+                    <td>{{this.user.email}}</td>
+                    {{!--
+                    <td>{{this.addedBy.first_name}} {{this.addedBy.last_name}}</td> --}}
+                    <td>{{# if unshare}} {{this.user}}
+                        <button type="button" class="btn btn-primary userUnshare" data-userId="{this.user._id}">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i>
+                        </button>
+                        {{/if}}
+                    </td>
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+</div>

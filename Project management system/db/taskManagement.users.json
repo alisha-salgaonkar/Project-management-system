@@ -1,0 +1,48 @@
+{ 
+    "_id" : ObjectId("5c5ba9465141221740e4e2ae"), 
+    "status" : true, 
+    "first_name" : "Kamini", 
+    "last_name" : "Rane", 
+    "email" : "kamini@gmail.com", 
+    "password" : "$2a$10$QLOvSB.R.tdKj.epWkOBteEpDxdL6.EUqTZuB2Lh4Gj3rAzS1lX3e", 
+    "phone" : 9087654321.0, 
+    "createdAt" : ISODate("2019-02-07T03:43:02.292+0000"), 
+    "updatedAt" : ISODate("2019-02-07T03:43:02.292+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5c5ba9705141221740e4e2af"), 
+    "status" : true, 
+    "first_name" : "Suchi", 
+    "last_name" : "Rane", 
+    "email" : "suchi@gmail.com", 
+    "password" : "$2a$10$y2zw4GT3XgoLuB.kmBzAle6L2o/HQVwag5IbLWju6u7CVlULcM/Oq", 
+    "phone" : 9876543212.0, 
+    "createdAt" : ISODate("2019-02-07T03:43:44.441+0000"), 
+    "updatedAt" : ISODate("2019-02-07T03:43:44.441+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5c5ba9905141221740e4e2b0"), 
+    "status" : true, 
+    "first_name" : "Dina", 
+    "last_name" : "Naik", 
+    "email" : "dina@gmail.com", 
+    "password" : "$2a$10$FV6ACk6Uw0w/q11M3rY.BucWlwGQ4eG6WwrI.3ZJTc4xHbESEuMHO", 
+    "phone" : 9987654319.0, 
+    "createdAt" : ISODate("2019-02-07T03:44:16.486+0000"), 
+    "updatedAt" : ISODate("2019-02-07T03:44:16.486+0000"), 
+    "__v" : NumberInt(0)
+}
+{ 
+    "_id" : ObjectId("5c5bb5b06f5ffa08287d48af"), 
+    "status" : true, 
+    "first_name" : "Alisha", 
+    "last_name" : "qwwww", 
+    "email" : "alisha@gmail.com", 
+    "password" : "$2a$10$zGoFhKBy8QlujAGjGz1HZ.8Y8G0h9RWRsWTTvqpuuWtI1e1FKnmpq", 
+    "phone" : NumberInt(987654321), 
+    "createdAt" : ISODate("2019-02-07T04:36:00.824+0000"), 
+    "updatedAt" : ISODate("2019-02-07T04:36:00.824+0000"), 
+    "__v" : NumberInt(0)
+}

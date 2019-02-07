@@ -1,0 +1,154 @@
+ {{#if boardData}}
+
+<div class="container">
+    <h1 class="mt-4">{{boardData.title}}</h1>
+    <a href="/editBoardView/{{boardData._id}}">
+        <i class="fa fa-pencil" title="Edit board" aria-hidden="true"></i>
+    </a>
+    <a href="/deleteBoard/{{boardData._id}}">
+        <i class="fa fa-trash" title="Delete board" aria-hidden="true"></i>
+    </a>
+    <a href="/manageMember/{{boardData._id}}">
+        <button type="button" class="btn btn-outline-primary">Manage members</button>
+    </a>
+    <p class="boardInfo">{{boardData.description}}</p>
+
+
+    <div class="mt-3">
+        {{# if error }}
+        <div class="alert alert-danger">
+            <span>{{error}}</span>
+        </div>
+        {{/if}} {{# if listAdd}}
+        <div class="alert alert-success">
+            <span>List is successfully added.</span>
+        </div>
+        {{/if}}
+        <div id="cardSuccMsg" class="alert alert-success" style="display: none;"></div>
+        <form class="form-inline" action="/addList" method="post">
+            <input type="hidden" name="boardId" value="{{boardData._id}}">
+            <label class="sr-only" for="inlineFormInputName2">Title</label>
+            <input type="text" required="required" name="title" class="form-control  mb-2 mr-sm-2" id="title" placeholder="Enter list title">
+            <button type="submit" class="btn btn-primary mb-2">Add list</button>
+        </form>
+    </div>
+    <div class="mt-3 scroll-container">
+        {{# if listUpd.nModified}}
+        <div class="alert alert-success">
+            <span>List title is successfully updated.</span>
+        </div>
+        {{/if}} {{# if listDel.nModified}}
+        <div class="alert alert-success">
+            <span>List is successfully deleted.</span>
+        </div>
+        {{/if}}
+        <div class="row listRow " data-board="{{boardData._id}}">
+            {{# each boardData.list }}
+            <div class="col-md-3 mb-3 scroll-container-box">
+                <div class="card" id="list_{{this._id}}">
+                    <div class="card-header px-2">
+                        {{this.title}}
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editListModal" data-list="{{this._id}}">
+                            <i class="fa fa-pencil" title="Edit list" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteListModal" data-list="{{this._id}}">
+                            <i class="fa fa-trash" title="Delete list" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <div class="card-body " style="    overflow-y: scroll;height: 350px;">
+                        {{# if this.cards.length }} {{# each this.cards }}
+                        <div id="card_{{this._id}}" class="cardsInList alert alert-primary">
+                            <div class="cardInner">
+                                <span> {{this.title}}</span>
+                                <div>
+                                    <button type="button" class="showEditCard btn btn-primary m-2">
+                                        <i class="fa fa-pencil" title="Edit card" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="deleteCard btn btn-primary">
+                                        <i class="fa fa-trash" title="Delete card" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}} {{else}}
+
+                        <div class="alert alert-danger">
+                            <span>No cards found.</span>
+                        </div>
+                        {{/if}}
+
+                    </div>
+
+                    <div class="card-footer text-muted" style="padding:5px;">
+                        <div class="form-inline">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" required="required" name="title" placeholder="Card name" aria-label="card title"
+                                    aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button type="submit" data-list="{{this._id}}" class="cardToList btn btn-primary mb-2">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit list</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="http://localhost:3000/editList">
+                <div class="modal-body">
+                    <input type="hidden" id="board" name="board" value="{{boardData._id}}">
+                    <input type="hidden" id="list" name="list" value="">
+                    <div class="form-group">
+                        <label for="title" class="col-form-label">Title:</label>
+                        <input type="text" class="form-control" name="title" id="title">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="deleteListModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete list</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="http://localhost:3000/deleteList">
+                <div class="modal-body">
+                    <input type="hidden" id="board" name="board" value="{{boardData._id}}">
+                    <input type="hidden" id="list" name="list" value="">
+                    <p class="p-0">All cards in this list will be deleted</p>
+                    <p class="p-0">Are you sure you want to delete?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{{/if}}
+<div id="dummy"></div>

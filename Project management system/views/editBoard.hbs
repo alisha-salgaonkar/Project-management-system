@@ -1,0 +1,24 @@
+<div style="width:600px;margin-left:auto;margin-right:auto;">
+    <h2>EDIT BOARD</h2>
+
+    {{# if error }}
+    <div class="alert alert-danger">
+        <span>{{error}}</span>
+    </div>
+    {{/if}}
+
+    <form action="http://localhost:3000/editBoard" method="post">
+        <input type="hidden" class="form-control" name="id" autofocus="autofocus" value="{{boardDetails._id}}">
+        <div class="form-group">
+            <input type="text" required="required" name="title" class="form-control" id="title" placeholder="Enter board title" value="{{boardDetails.title}}">
+        </div>
+        <div class="form-group">
+            <textarea required="required" class="form-control" rows="5" id="description" minlength="100" maxlength="250" name="description"
+                placteholder="Enter board description">{{boardDetails.description}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+        <a href="/">
+            <button type="button" class="btn btn-primary">Cancel</button>
+        </a>
+    </form>
+</div>

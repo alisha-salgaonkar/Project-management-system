@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="my-3">
+        <a href="/showAddBoardForm">
+            <button type="button" class="btn btn-outline-primary">CREATE NEW BOARD</button>
+        </a>
+    </div>
+
+    {{#if delBoard}}
+    <div class="alert alert-danger">
+        <span> Board deleted successfully</span>
+    </div>
+    {{/if}} {{# if list.length }}
+
+    <div class="row">
+        {{# each list }}
+        <div class="col-md-3">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-header">{{this.title}}</div>
+                <div class="card-body">
+                    <p class="card-text block-ellipsis">{{this.description}}</p>
+                </div>
+                <a href="../board/{{this._id}}" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+    {{else}}
+    <div class="alert alert-danger">
+        <span> No records found</span>
+    </div>
+    {{/if}}
+
+
+</div>
